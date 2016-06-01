@@ -76,6 +76,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\CastleWindsorInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +89,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\SCMVC\SC.MV.CastleWindsorInitializer.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SC.MVC.Starterkit.Business\SC.MVC.Starterkit.Business.csproj">
+      <Project>{ca3235b6-34c5-408f-aecb-701e5386a28a}</Project>
+      <Name>SC.MVC.Starterkit.Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
