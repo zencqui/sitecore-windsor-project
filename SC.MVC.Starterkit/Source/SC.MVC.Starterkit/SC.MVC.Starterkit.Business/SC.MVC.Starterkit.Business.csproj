@@ -57,6 +57,9 @@
   <ItemGroup>
     <Compile Include="CastleWindsor\WindsorControllerBuilder.cs" />
     <Compile Include="CastleWindsor\WindsorControllerLocator.cs" />
+    <Compile Include="CastleWindsor\WindsorControllerRenderer.cs" />
+    <Compile Include="CastleWindsor\WindsorControllerRunner.cs" />
+    <Compile Include="CastleWindsor\WindsorGetControllerRenderer.cs" />
     <Compile Include="CastleWindsor\WindsorInstallerFactory.cs" />
     <Compile Include="Utilities\AssemblyUtility.cs" />
     <Compile Include="CastleWindsor\AutoInstallAttribute.cs" />
