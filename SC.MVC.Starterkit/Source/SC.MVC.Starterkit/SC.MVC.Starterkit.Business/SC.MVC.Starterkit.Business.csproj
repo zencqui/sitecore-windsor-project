@@ -61,14 +61,16 @@
     <Compile Include="CastleWindsor\WindsorControllerRunner.cs" />
     <Compile Include="CastleWindsor\WindsorGetControllerRenderer.cs" />
     <Compile Include="CastleWindsor\WindsorInstallerFactory.cs" />
+    <Compile Include="Installers\ControllerInstallers.cs" />
     <Compile Include="Utilities\AssemblyUtility.cs" />
     <Compile Include="CastleWindsor\AutoInstallAttribute.cs" />
-    <Compile Include="CastleWindsor\AutoInstaller.cs" />
+    <Compile Include="Installers\AutoInstaller.cs" />
     <Compile Include="CastleWindsor\CastleWindsorControllerFactory.cs" />
     <Compile Include="CastleWindsor\Resolver.cs" />
     <Compile Include="Helpers\DisposableHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

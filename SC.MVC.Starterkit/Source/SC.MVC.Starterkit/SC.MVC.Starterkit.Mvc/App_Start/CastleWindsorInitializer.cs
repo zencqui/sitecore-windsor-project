@@ -1,6 +1,7 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using SC.MVC.Starterkit.Business.CastleWindsor;
+using SC.MVC.Starterkit.Business.Installers;
 using Sitecore.Mvc.Controllers;
 using Sitecore.Pipelines;
 using System;

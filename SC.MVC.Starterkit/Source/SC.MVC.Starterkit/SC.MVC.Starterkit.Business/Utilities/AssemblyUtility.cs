@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Castle.MicroKernel.Registration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using Sitecore.Mvc.Extensions;
+using System.Web.Mvc;
 
 namespace SC.MVC.Starterkit.Business.Utilities
 {
@@ -18,6 +22,19 @@ namespace SC.MVC.Starterkit.Business.Utilities
                     .Where(assembly => assembly.FullName.StartsWith(AssemblyFilter, StringComparison.OrdinalIgnoreCase))
                     .Select(assembly => assembly.Location).ToArray();
             }
+        }
+
+        private static BasedOnDescriptor CreateAssemblyFilter()
+        {
+            return Classes.FromAssemblyInDirectory(new AssemblyFilter(HttpRuntime.BinDirectory, AssemblyFilter + ".")).Pick();
+        }
+
+        public static BasedOnDescriptor GetControllerDescriptor()
+        {
+            return CreateAssemblyFilter()
+                .If(type => type.IsAssignableTo(typeof(IController)))
+                .WithServiceSelf()
+                .LifestyleTransient();
         }
     }
 }

@@ -88,7 +88,7 @@
     <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\SCMVC\SC.MV.CastleWindsorInitializer.config" />
+    <Content Include="App_Config\Include\SCMVC\SC.MVC.CastleWindsorInitializer.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SC.MVC.Starterkit.Business\SC.MVC.Starterkit.Business.csproj">
