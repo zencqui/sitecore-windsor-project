@@ -19,6 +19,7 @@ namespace SC.MVC.Starterkit.Mvc.App_Start
         {
             this.container = new Castle.Windsor.WindsorContainer();
 
+            InitializeCastleWindsor();
             // Register Installers
             RegisterInstallers();
 
@@ -27,7 +28,7 @@ namespace SC.MVC.Starterkit.Mvc.App_Start
 
         public void InitializeCastleWindsor()
         {
-            var windsorControllerFactory = new CastleWindsorControllerFactory(this.container);
+            var windsorControllerFactory = new CastleWindsorControllerFactory(this.container.Kernel);
             System.Web.Mvc.ControllerBuilder.Current.SetControllerFactory(windsorControllerFactory);
         }
 

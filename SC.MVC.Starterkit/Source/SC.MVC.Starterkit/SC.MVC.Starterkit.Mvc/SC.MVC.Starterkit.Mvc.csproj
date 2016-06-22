@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CastleWindsorInitializer.cs" />
+    <Compile Include="Areas\SCMVC\Controllers\SampleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,17 +85,23 @@
     <Content Include="Areas\SCMVC\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\SCMVC\Controllers\" />
     <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\SCMVC\SC.MVC.CastleWindsorInitializer.config" />
+    <Content Include="App_Config\Include\SCMVC\SC.MVC.CastleWindsorInitializer.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SC.MVC.Starterkit.Business\SC.MVC.Starterkit.Business.csproj">
       <Project>{ca3235b6-34c5-408f-aecb-701e5386a28a}</Project>
       <Name>SC.MVC.Starterkit.Business</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\SCMVC\Views\sampleview.cshtml" />
+    <Content Include="Areas\SCMVC\Views\Starterkit\BaseLayout-MVC.cshtml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

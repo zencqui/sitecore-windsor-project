@@ -26,7 +26,7 @@ namespace SC.MVC.Starterkit.Business.Utilities
 
         private static BasedOnDescriptor CreateAssemblyFilter()
         {
-            return Classes.FromAssemblyInDirectory(new AssemblyFilter(HttpRuntime.BinDirectory, AssemblyFilter + ".")).Pick();
+            return Classes.FromAssemblyInDirectory(new AssemblyFilter(HttpRuntime.BinDirectory, AssemblyFilter + ".*")).Pick();
         }
 
         public static BasedOnDescriptor GetControllerDescriptor()
