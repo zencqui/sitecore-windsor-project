@@ -54,6 +54,9 @@
     <Reference Include="Glass.Mapper.Sc.CastleWindsor">
       <HintPath>..\..\..\..\lib\Glass.Mapper.Sc.CastleWindsor.dll</HintPath>
     </Reference>
+    <Reference Include="Glass.Mapper.Sc.Mvc">
+      <HintPath>..\..\..\..\lib\Glass.Mapper.Sc.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Sitecore.Client">
       <HintPath>..\..\..\..\lib\Sitecore.Client.dll</HintPath>

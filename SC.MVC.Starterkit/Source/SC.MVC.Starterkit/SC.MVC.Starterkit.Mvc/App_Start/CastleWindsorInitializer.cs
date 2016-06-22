@@ -1,7 +1,12 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using Glass.Mapper;
+using Glass.Mapper.Configuration;
+using Glass.Mapper.Configuration.Attributes;
+using Glass.Mapper.Sc.CastleWindsor;
 using SC.MVC.Starterkit.Business.CastleWindsor;
 using SC.MVC.Starterkit.Business.Installers;
+using SC.MVC.Starterkit.Business.Utilities;
 using Sitecore.Mvc.Controllers;
 using Sitecore.Pipelines;
 using System;
@@ -13,28 +18,40 @@ namespace SC.MVC.Starterkit.Mvc.App_Start
 {
     public class CastleWindsorInitializer
     {
-        private IWindsorContainer container;
-
         public void Process(PipelineArgs args)
         {
-            this.container = new Castle.Windsor.WindsorContainer();
+            var resolver = DependencyResolver.CreateStandardResolver();
+            Resolver.Container = resolver.Container;
 
-            InitializeCastleWindsor();
+            InitializeCastleWindsor(resolver.Container);
             // Register Installers
-            RegisterInstallers();
+            RegisterInstallers(resolver.Container);
 
             Sitecore.Mvc.Configuration.MvcSettings.RegisterObject<ControllerLocator>(() => new WindsorControllerLocator());
+
+            //Load Glass
+            Context context = Context.Create(resolver);
+            context.Load(GlassLoader());
         }
 
-        public void InitializeCastleWindsor()
+        public static void InitializeCastleWindsor(IWindsorContainer container)
         {
-            var windsorControllerFactory = new CastleWindsorControllerFactory(this.container.Kernel);
+            var windsorControllerFactory = new CastleWindsorControllerFactory(container.Kernel);
             System.Web.Mvc.ControllerBuilder.Current.SetControllerFactory(windsorControllerFactory);
         }
 
-        private void RegisterInstallers()
+        private static void RegisterInstallers(IWindsorContainer container)
         {
-            container.Install(new AutoInstaller());
+            var config = new Config();
+            container.Install(new AutoInstaller(), new SitecoreInstaller(config));
+        }
+
+        private static IConfigurationLoader[] GlassLoader()
+        {
+            IConfigurationLoader attributes =
+                new AttributeConfigurationLoader(AssemblyUtility.RelatedAssemblies.ToArray());
+
+            return new IConfigurationLoader[] { attributes };
         }
     }
 }
