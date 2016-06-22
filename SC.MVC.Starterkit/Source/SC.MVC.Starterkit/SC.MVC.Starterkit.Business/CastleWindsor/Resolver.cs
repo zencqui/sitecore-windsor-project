@@ -19,7 +19,8 @@ namespace SC.MVC.Starterkit.Business.CastleWindsor
             {
                 return container;
             }
-            private set
+
+            set
             {
                 lock (locker)
                 {

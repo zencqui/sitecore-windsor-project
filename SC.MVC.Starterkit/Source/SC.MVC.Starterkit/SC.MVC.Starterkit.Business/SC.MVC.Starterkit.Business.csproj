@@ -36,6 +36,12 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\..\..\..\lib\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="Glass.Mapper">
+      <HintPath>..\..\..\..\lib\Glass.Mapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper.Sc">
+      <HintPath>..\..\..\..\lib\Glass.Mapper.Sc.dll</HintPath>
+    </Reference>
     <Reference Include="Glass.Mapper.Sc.CastleWindsor">
       <HintPath>..\..\..\..\lib\Glass.Mapper.Sc.CastleWindsor.dll</HintPath>
     </Reference>
@@ -62,6 +68,7 @@
     <Compile Include="CastleWindsor\WindsorGetControllerRenderer.cs" />
     <Compile Include="CastleWindsor\WindsorInstallerFactory.cs" />
     <Compile Include="Installers\ControllerInstallers.cs" />
+    <Compile Include="Installers\GlassInstallers.cs" />
     <Compile Include="Installers\StarterkitInstaller.cs" />
     <Compile Include="Services\ISettingsWrapper.cs" />
     <Compile Include="Services\SettingsWrapper.cs" />
