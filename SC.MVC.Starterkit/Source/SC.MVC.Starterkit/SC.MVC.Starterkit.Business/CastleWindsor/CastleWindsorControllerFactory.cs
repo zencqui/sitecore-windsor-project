@@ -1,8 +1,10 @@
 ﻿using Castle.MicroKernel;
 using Castle.Windsor;
+using Sitecore.Diagnostics;
 using Sitecore.Mvc.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,27 +14,32 @@ namespace SC.MVC.Starterkit.Business.CastleWindsor
 {
     public class CastleWindsorControllerFactory : DefaultControllerFactory
     {
-        private readonly IWindsorContainer container;
+        private readonly IKernel kernel;
 
-        public CastleWindsorControllerFactory(IWindsorContainer container)
+        public CastleWindsorControllerFactory(IKernel kernel)
         {
-            this.container = container;
+            this.kernel = kernel;
         }
 
         public override IController CreateController(System.Web.Routing.RequestContext requestContext, string controllerName)
         {
             if (!TypeHelper.LooksLikeTypeName(controllerName))
             {
-                return null;
+                return base.CreateController(requestContext, controllerName);
             }
 
             var controllerType = Type.GetType(controllerName);
-            if (!Type.ReferenceEquals(controllerType, null))
+
+            if (controllerType == null)
             {
-                return this.GetControllerInstance(requestContext, controllerType);
+                Log.Error(string.Format(CultureInfo.InvariantCulture,
+                    "Controller '{0}' not foud. - Reqiest URL: {1}",
+                    controllerName, requestContext.HttpContext.Request.Url), this);
+
+                return null;
             }
 
-            return base.CreateController(requestContext, controllerName);
+            return this.GetControllerInstance(requestContext, controllerType);
         }
 
         protected override IController GetControllerInstance(System.Web.Routing.RequestContext requestContext, Type controllerType)
@@ -42,12 +49,17 @@ namespace SC.MVC.Starterkit.Business.CastleWindsor
                 return null;
             }
 
-            return this.container.Resolve(controllerType) as IController;
+            if (this.kernel.HasComponent(controllerType))
+            {
+                return this.kernel.Resolve(controllerType) as IController;
+            }
+
+            return base.GetControllerInstance(requestContext, controllerType);
         }
 
         public override void ReleaseController(IController controller)
         {
-            this.container.Release(controller);
+            this.kernel.ReleaseComponent(controller);
         }
     }
 }

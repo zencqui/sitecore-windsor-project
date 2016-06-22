@@ -62,6 +62,9 @@
     <Compile Include="CastleWindsor\WindsorGetControllerRenderer.cs" />
     <Compile Include="CastleWindsor\WindsorInstallerFactory.cs" />
     <Compile Include="Installers\ControllerInstallers.cs" />
+    <Compile Include="Installers\StarterkitInstaller.cs" />
+    <Compile Include="Services\ISettingsWrapper.cs" />
+    <Compile Include="Services\SettingsWrapper.cs" />
     <Compile Include="Utilities\AssemblyUtility.cs" />
     <Compile Include="CastleWindsor\AutoInstallAttribute.cs" />
     <Compile Include="Installers\AutoInstaller.cs" />

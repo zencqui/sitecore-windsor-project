@@ -14,12 +14,12 @@ namespace SC.MVC.Starterkit.Business.CastleWindsor
         public WindsorControllerRunner(string controllerName, string actionName)
             : base(controllerName, actionName)
         {
-            this.NeedRelease = true;
+            this.NeedRelease = true; 
         }
 
         protected override System.Web.Mvc.IController CreateController()
         {
-            if (TypeHelper.LooksLikeTypeName(this.ControllerName))
+            if (!TypeHelper.LooksLikeTypeName(this.ControllerName))
             {
                 return base.CreateController();
             }

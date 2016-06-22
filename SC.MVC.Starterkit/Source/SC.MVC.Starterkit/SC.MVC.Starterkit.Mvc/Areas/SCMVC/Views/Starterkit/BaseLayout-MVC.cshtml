@@ -1,0 +1,17 @@
+﻿@using System.Web
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Helpers
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MVCLayout</title>
+</head>
+<body>
+    <div class="page" id="page">
+           @Html.Sitecore().Placeholder("SCMVC_Body")
+    </div>
+</body>
+</html>
