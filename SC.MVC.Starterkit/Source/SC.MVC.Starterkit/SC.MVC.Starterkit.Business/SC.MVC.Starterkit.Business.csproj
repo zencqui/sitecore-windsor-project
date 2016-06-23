@@ -45,6 +45,9 @@
     <Reference Include="Glass.Mapper.Sc.CastleWindsor">
       <HintPath>..\..\..\..\lib\Glass.Mapper.Sc.CastleWindsor.dll</HintPath>
     </Reference>
+    <Reference Include="Glass.Mapper.Sc.Mvc">
+      <HintPath>..\..\..\..\lib\Glass.Mapper.Sc.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\lib\Sitecore.Kernel.dll</HintPath>
@@ -70,6 +73,8 @@
     <Compile Include="Installers\ControllerInstallers.cs" />
     <Compile Include="Installers\GlassInstallers.cs" />
     <Compile Include="Installers\StarterkitInstaller.cs" />
+    <Compile Include="Models\GlassBase.cs" />
+    <Compile Include="Models\IGlassBase.cs" />
     <Compile Include="Services\ISettingsWrapper.cs" />
     <Compile Include="Services\SettingsWrapper.cs" />
     <Compile Include="Utilities\AssemblyUtility.cs" />
