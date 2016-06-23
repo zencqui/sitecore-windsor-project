@@ -1,5 +1,6 @@
 ﻿using Glass.Mapper.Sc;
 using Glass.Mapper.Sc.Web.Mvc;
+using SC.MVC.Starterkit.Business.Models;
 using SC.MVC.Starterkit.Business.Services;
 using Sitecore.Data.Items;
 using Sitecore.Mvc.Controllers;
@@ -26,7 +27,7 @@ namespace SC.MVC.Starterkit.Mvc.Areas.SCMVC.Controllers
 
         public ActionResult SampleAction()
         {
-            var item = this.SitecoreContext.GetCurrentItem<Item>();
+            var item = this.SitecoreContext.GetCurrentItem<IGlassBase>();
 
             var value = this.settings.GetSetting("settingName");
 
