@@ -72,8 +72,11 @@
     <Compile Include="CastleWindsor\WindsorInstallerFactory.cs" />
     <Compile Include="Installers\ControllerInstallers.cs" />
     <Compile Include="Installers\GlassInstallers.cs" />
+    <Compile Include="Installers\WrapperInstaller.cs" />
     <Compile Include="Installers\StarterkitInstaller.cs" />
+    <Compile Include="Models\Copyright.cs" />
     <Compile Include="Models\GlassBase.cs" />
+    <Compile Include="Models\ICoinCopyright.cs" />
     <Compile Include="Models\IGlassBase.cs" />
     <Compile Include="Services\ISettingsWrapper.cs" />
     <Compile Include="Services\SettingsWrapper.cs" />
@@ -84,6 +87,10 @@
     <Compile Include="CastleWindsor\Resolver.cs" />
     <Compile Include="Helpers\DisposableHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrappers\RenderingContextWrapper.cs" />
+    <Compile Include="Wrappers\RenderingContextWrapperBase.cs" />
+    <Compile Include="Wrappers\RenderingWrapper.cs" />
+    <Compile Include="Wrappers\RenderingWrapperBase.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
