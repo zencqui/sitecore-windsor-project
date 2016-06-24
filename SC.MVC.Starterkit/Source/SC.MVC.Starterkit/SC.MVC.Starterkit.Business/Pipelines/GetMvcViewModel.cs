@@ -23,32 +23,40 @@ namespace SC.MVC.Starterkit.Business.Pipelines
                 return;
             }
 
-            Type type = this.GetModelVromViewPath(args.Rendering, args);
+            Type modelType = this.GetModelVromViewPath(args.Rendering, args);
 
-            if (type == null || !typeof(IGlassBase).IsAssignableFrom(type))
+            if (modelType == null || !typeof(IGlassBase).IsAssignableFrom(modelType))
             {
                 return;
             }
 
-            // should be in separate method
-            string datasource = args.Rendering.DataSource;
-            Type glassType = typeof(GlassBase);
 
-            IGlassBase result;
             var sitecoreContext = this.SitecoreContext();
+            IGlassBase createdInstance = GetInstanceFromContext(args.Rendering, sitecoreContext);
 
-            if (!string.IsNullOrEmpty(datasource))
+            if (modelType.IsInstanceOfType(createdInstance))
             {
-                args.Result = (IGlassBase)sitecoreContext.GetCurrentItem(glassType, inferType: true);
+                args.Result = createdInstance;
             }
-
-            Item itemDatasource = sitecoreContext.Database.GetItem(datasource);
-
-            result = (IGlassBase)sitecoreContext.CreateType(glassType, itemDatasource, true, true, null, null);
-
-            args.Result = result;
+ 
+            // else if model type is not type of created instance.
 
             args.AbortPipeline();
+        }
+
+        private IGlassBase GetInstanceFromContext(Rendering rendering, ISitecoreContext sitecoreContext)
+        {
+            string datasource = rendering.DataSource;
+            Type glassBaseType = typeof(GlassBase);
+
+            if (!datasource.IsNotNullOrEmpty())
+            {
+                return (IGlassBase)sitecoreContext.GetCurrentItem(glassBaseType, inferType: true);
+            }
+
+            Item item = sitecoreContext.Database.GetItem(datasource);
+
+            return (IGlassBase)sitecoreContext.CreateType(glassBaseType, item, true, true, null, null);
         }
 
         private ISitecoreContext SitecoreContext()
