@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace SC.MVC.Starterkit.Business.Models
 {
-    public partial class Copyright : GlassBase, ICoinCopyright
+    [SitecoreType(TemplateId="9B1B8A7F-4218-48AA-AB51-C9D53B3391E9")]
+    public partial class CoinCopyright : GlassBase, ICoinCopyright
     {
         [SitecoreField("CopyrightText", Setting = SitecoreFieldSettings.Default)]
         public virtual string CopyrightText { get; set; }

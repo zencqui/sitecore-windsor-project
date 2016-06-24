@@ -70,11 +70,12 @@
     <Compile Include="CastleWindsor\WindsorControllerRunner.cs" />
     <Compile Include="CastleWindsor\WindsorGetControllerRenderer.cs" />
     <Compile Include="CastleWindsor\WindsorInstallerFactory.cs" />
+    <Compile Include="Pipelines\GetMvcViewModel.cs" />
     <Compile Include="Installers\ControllerInstallers.cs" />
     <Compile Include="Installers\GlassInstallers.cs" />
     <Compile Include="Installers\WrapperInstaller.cs" />
     <Compile Include="Installers\StarterkitInstaller.cs" />
-    <Compile Include="Models\Copyright.cs" />
+    <Compile Include="Models\CoinCopyright.cs" />
     <Compile Include="Models\GlassBase.cs" />
     <Compile Include="Models\ICoinCopyright.cs" />
     <Compile Include="Models\IGlassBase.cs" />

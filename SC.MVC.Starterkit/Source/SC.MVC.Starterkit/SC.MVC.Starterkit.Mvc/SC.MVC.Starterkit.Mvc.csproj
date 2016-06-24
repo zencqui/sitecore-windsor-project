@@ -113,6 +113,7 @@
     <Content Include="Areas\SCMVC\Views\sampleview.cshtml" />
     <Content Include="Areas\SCMVC\Views\Starterkit\BaseLayout-MVC.cshtml" />
     <Content Include="Areas\SCMVC\Views\sampleviewrendering.cshtml" />
+    <Content Include="App_Config\Include\SCMVC\SC.MVC.ViewModel.config" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
   </ItemGroup>
   <PropertyGroup>
