@@ -11,6 +11,10 @@ using System.Web.Compilation;
 using SC.MVC.Starterkit.Business.Models;
 using Glass.Mapper.Sc;
 using Glass.Mapper;
+using Sitecore.Diagnostics;
+using SC.MVC.Starterkit.Business.Attributes;
+using Sitecore.Globalization;
+using Sitecore.Data;
 
 namespace SC.MVC.Starterkit.Business.Pipelines
 {
@@ -29,8 +33,7 @@ namespace SC.MVC.Starterkit.Business.Pipelines
             {
                 return;
             }
-
-
+            
             var sitecoreContext = this.SitecoreContext();
             IGlassBase createdInstance = GetInstanceFromContext(args.Rendering, sitecoreContext);
 
@@ -38,10 +41,59 @@ namespace SC.MVC.Starterkit.Business.Pipelines
             {
                 args.Result = createdInstance;
             }
- 
-            // else if model type is not type of created instance.
+            else
+            {
+                if (createdInstance == null)
+                {
+                    Log.Error("Unable to locate datasource.", this);
+                    Type matchType = this.FindMatchingType(modelType);
+
+                    var item = Activator.CreateInstance(matchType);
+                    args.Result = item;
+                }
+                else // expensive call finding alternative instance
+                {
+                    Log.Warn("Creating alternative instance. Expensive call.", this);
+                    args.Result = CreateAlternativeInstance(modelType, sitecoreContext, createdInstance);
+                    
+                }
+            }
+
+             //else if model type is not type of created instance.
 
             args.AbortPipeline();
+        }
+
+        private object CreateAlternativeInstance(Type modelType,
+            ISitecoreContext sitecoreContext,
+            IGlassBase createdInstance)
+        {
+            Type instanceType = FindMatchingType(modelType);
+
+            Item baseItem = sitecoreContext.Database.GetItem(new ID(createdInstance.Id), createdInstance.Language);
+            return sitecoreContext.CreateType(instanceType, baseItem, true, true, null, null);
+        }
+
+        private Type FindMatchingType(Type type)
+        {
+            if (type.IsInterface)
+            {
+                type = FindMatchingTypeImplementation(type);
+            }
+
+            return type;
+        }
+
+        private Type FindMatchingTypeImplementation(Type type)
+        {
+            var attribute = (MatchingTypeAttribute)Attribute.GetCustomAttribute(type, typeof(MatchingTypeAttribute));
+
+            if (attribute == null)
+            {
+                throw new Exception("Unable to find matiching type.");
+            }
+
+            return attribute.MatchType;
         }
 
         private IGlassBase GetInstanceFromContext(Rendering rendering, ISitecoreContext sitecoreContext)
