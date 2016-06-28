@@ -1,5 +1,6 @@
 ﻿using Castle.MicroKernel.Registration;
 using Glass.Mapper.Sc;
+using SC.MVC.Starterkit.Business.Attributes;
 using SC.MVC.Starterkit.Business.CastleWindsor;
 using System;
 using System.Collections.Generic;

@@ -2,6 +2,7 @@
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
+using SC.MVC.Starterkit.Business.Attributes;
 using SC.MVC.Starterkit.Business.CastleWindsor;
 using SC.MVC.Starterkit.Business.Utilities;
 using System;

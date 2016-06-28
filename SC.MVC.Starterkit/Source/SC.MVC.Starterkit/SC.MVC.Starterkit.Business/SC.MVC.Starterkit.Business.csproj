@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\MatchingTypeAttribute.cs" />
     <Compile Include="CastleWindsor\WindsorControllerBuilder.cs" />
     <Compile Include="CastleWindsor\WindsorControllerLocator.cs" />
     <Compile Include="CastleWindsor\WindsorControllerRenderer.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="Services\ISettingsWrapper.cs" />
     <Compile Include="Services\SettingsWrapper.cs" />
     <Compile Include="Utilities\AssemblyUtility.cs" />
-    <Compile Include="CastleWindsor\AutoInstallAttribute.cs" />
+    <Compile Include="Attributes\AutoInstallAttribute.cs" />
     <Compile Include="Installers\AutoInstaller.cs" />
     <Compile Include="CastleWindsor\CastleWindsorControllerFactory.cs" />
     <Compile Include="CastleWindsor\Resolver.cs" />
